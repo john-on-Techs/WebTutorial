@@ -13,11 +13,11 @@ import java.sql.SQLException;
 
 @WebServlet(name = "create-product", urlPatterns = "/create-product")
 public class CreateProduct extends HttpServlet {
-    ProductService productDao = null;
+    ProductService productService = null;
 
     @Override
     public void init() throws ServletException {
-        productDao = new ProductService();
+        productService = new ProductService();
     }
 
     @Override
@@ -28,17 +28,17 @@ public class CreateProduct extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        int productId = Integer.parseInt(req.getParameter("productId"));
-        String productName = req.getParameter("productName");
-        String productDecription = req.getParameter("productDescription");
-        Product product = new Product(productId, productName, productDecription);
 
         try {
-
-            productDao.create(product);
-            resp.sendRedirect("list-product");
-        } catch (SQLException e) {
-            throw new ServletException("Retrieving products failed!", e);
+            int productId = Integer.parseInt(req.getParameter("productId"));
+            String productName = req.getParameter("productName");
+            String productDecription = req.getParameter("productDescription");
+            Product product = new Product(productId, productName, productDecription);
+            if( productService.create(product)){
+                resp.sendRedirect("list-product");
+            }
+        } catch (SQLException |NumberFormatException e) {
+            throw new ServletException("creating products failed!", e);
         }
     }
 

@@ -85,7 +85,7 @@ public class UserService implements ServiceInterface<User> {
         DataTypes[] dataTypes = new DataTypes[1];
         Object[] params = new Object[1];
         dataTypes[0] = DataTypes.STRING;
-        params[0] = user.getName();
+        params[0] = user.getId();
 
         if(DBHandler.getInstance().executeAction(query, params, dataTypes)){
            DBHandler.getInstance().commitChanges();

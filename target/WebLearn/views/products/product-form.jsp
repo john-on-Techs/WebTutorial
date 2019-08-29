@@ -51,7 +51,7 @@
                     </div>
                     <div class="form-group">
                         <label for="productDescription">Product Description</label>
-                        <textarea class="form-control" rows="5" id="productDescription" name="productDescription" required></textarea>
+                        <textarea class="form-control"  rows="5" id="productDescription" name="productDescription" required>${product.description}</textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">Save</button>
                 </form>

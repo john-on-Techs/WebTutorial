@@ -13,11 +13,11 @@ import java.sql.SQLException;
 
 @WebServlet(name = "delete-product",urlPatterns = "/delete-product")
 public class DeleteProduct extends HttpServlet {
-    ProductService productDao =null;
+    ProductService productService =null;
 
     @Override
     public void init() throws ServletException {
-        productDao = new ProductService();
+        productService = new ProductService();
     }
 
     @Override
@@ -26,14 +26,14 @@ public class DeleteProduct extends HttpServlet {
         try {
             int productId = Integer.parseInt(req.getParameter("productId"));
             //System.out.println(productId);
-             product = productDao.read(productId);
+             product = productService.read(productId);
 
 
         } catch (SQLException e) {
            throw  new ServletException("Error retrieving product",e);
         }
         try {
-            productDao.delete(product);
+            productService.delete(product);
             resp.sendRedirect("list-product");
         } catch (SQLException e) {
             throw  new ServletException("Error deleting product",e);

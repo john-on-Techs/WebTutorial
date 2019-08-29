@@ -14,17 +14,17 @@ import java.util.ArrayList;
 
 @WebServlet(name = "list-product", urlPatterns = "/list-product")
 public class ListProducts extends HttpServlet {
-    private ProductService productDao = null;
+    private ProductService productService = null;
 
     @Override
     public void init() throws ServletException {
-        productDao = new ProductService();
+        productService = new ProductService();
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            ArrayList<Product> products = productDao.getProducts(); // Obtain all products.
+            ArrayList<Product> products = productService.getProducts(); // Obtain all products.
             request.setAttribute("products", products); // Store products in request scope.
             request.getRequestDispatcher("/views/products/list-product.jsp").forward(request, response); // Forward to JSP page to display them in a HTML table.
         } catch (SQLException e) {

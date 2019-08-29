@@ -13,11 +13,11 @@ import java.sql.SQLException;
 
 @WebServlet(name = "update-product", urlPatterns = "update-product")
 public class UpdateProduct extends HttpServlet {
-    ProductService productDao = null;
+    ProductService productService = null;
 
     @Override
     public void init() throws ServletException {
-        productDao = new ProductService();
+        productService = new ProductService();
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,7 +28,7 @@ public class UpdateProduct extends HttpServlet {
 
 
         try {
-            product = productDao.read(productId);
+            product = productService.read(productId);
         } catch (SQLException e) {
             throw new ServletException("Retrieving product failed!", e);
         }
@@ -38,14 +38,13 @@ public class UpdateProduct extends HttpServlet {
             product.setDescription(productDecription);
 
             try {
-                productDao.update(product);
+                productService.update(product);
                 response.sendRedirect("list-product");
             } catch (SQLException e) {
                 throw new ServletException("Updating product failed!", e);
             }
-        } else {
-            //notofy the user that the product was not updated
         }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -53,7 +52,7 @@ public class UpdateProduct extends HttpServlet {
 
         int productId = Integer.parseInt(request.getParameter("productId"));
         try {
-            product = productDao.read(productId);
+            product = productService.read(productId);
         } catch (SQLException e) {
             throw new ServletException("Retrieving product failed!", e);
         }

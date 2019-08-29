@@ -21,13 +21,13 @@
                 <a class="nav-link" href="list-product">Products</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="receivings">Receivings</a>
+                <a class="nav-link" href="list-receivings">Receivings</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="sales">Sales</a>
+                <a class="nav-link" href="list-sale">Sales</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="users">Users</a>
+                <a class="nav-link" href="list-user">Users</a>
             </li>
                 <li class="nav-item">
                     <form action="logout" method="post">

@@ -24,11 +24,11 @@
     }
 %>
 
-<div class="alert alert-secondary" role="alert">
+
 
 <div class="container">
 
-
+    <c:if test="${products!= null}">
     <table class=" table">
         <caption>List of Products</caption>
         <thead>
@@ -41,6 +41,7 @@
         </tr>
         </thead>
         <tbody>
+
         <c:forEach items="${products}" var="product" >
             <tr>
                 <td>${product.id}</td>
@@ -57,54 +58,11 @@
 
 
 
+
         </tbody>
     </table>
+    </c:if>
     <a href="create-product" class="badge badge-primary">Add New Product</a>
-<%--    SHOW PRODUCT FORM--%>
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-        Add new Product
-    </button>
-
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form action="create-product" method="post">
-                        <div class="form-group">
-                            <label for="productId">Product ID</label>
-                            <input type="number" class="form-control" id="productId" aria-describedby="emailHelp"
-                                   placeholder="Enter product ID">
-                        </div>
-                        <div class="form-group">
-                            <label for="productName">Product Name</label>
-                            <input type="text" class="form-control" id="productName" placeholder="Product Name">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="productDescription">Product Description</label>
-                            <textarea class="form-control " id="productDescription"
-                                      placeholder="Required product description" required>
-                    </textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 
     <script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>

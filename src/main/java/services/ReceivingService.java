@@ -90,6 +90,7 @@ public class ReceivingService implements ServiceInterface<Receiving> {
     }
 
     private void setReceivingObject(ResultSet rs, Receiving receiving) throws SQLException {
+        receiving.setReceiveId(rs.getInt("receiveId"));
         receiving.setBatchNo(rs.getInt("batchNo"));
         receiving.setDate(rs.getDate("date"));
         receiving.setProductId(rs.getInt("productId"));

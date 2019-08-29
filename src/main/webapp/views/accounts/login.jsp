@@ -13,13 +13,13 @@
     <title>Title</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css">
 </head>
-<body>
+<body class="">
 
 
 <div class="container login-container">
     <div class="row">
         <div class="col-md-6 login-form-1">
-            <form action="login" method="post">
+            <form action="login" method="post" class>
 
                    <div class="form-group">
                        <label for="user-id">User ID</label>
@@ -44,7 +44,7 @@
 
     </div>
 </div>
-${pageContext.request.contextPath}
+
 
 <script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
 <script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
