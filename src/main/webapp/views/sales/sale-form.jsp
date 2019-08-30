@@ -10,41 +10,40 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css">
+    <%@include file="../layout/css.jsp"%>
 
 </head>
 <body>
-<%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("login");
-    }
-%>
-<form action="create-sale" method="post">
+<%@include file="../accounts/check_login.jsp"%>
+<%@include file="../layout/header.jsp"%>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
+            <form action="create-sale" method="post">
 
-    <div class="form-group">
-        <label for="productId">Product</label>
-        <select class="form-control" id="productId" name="productId">
-            <c:forEach items="${products}" var="product">
-                <option value="${product.id}">${product.name}</option>
-            </c:forEach>
+                <div class="form-group">
+                    <label for="productId">Product</label>
+                    <select class="form-control" id="productId" name="productId" required>
+                        <c:forEach items="${products}" var="product">
+                            <option value="${product.id}">${product.name}</option>
+                        </c:forEach>
 
-        </select>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" class="form-control"
+                           id="quantity" required
+                           placeholder="Quantity">
+                </div>
+
+                <button type="submit">Save</button>
+            </form>
+
+        </div>
     </div>
-    <div class="form-group">
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" class="form-control"
-               id="quantity" required
-               placeholder="Quantity">
-    </div>
+</div>
 
-    <button type="submit">Save</button>
-</form>
-
-
-
-<script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+<%@include file="../layout/js.jsp"%>
 </body>
 </html>

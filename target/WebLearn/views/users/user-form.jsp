@@ -11,16 +11,12 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css" >
+    <%@include file="../layout/css.jsp"%>
 </head>
 <body>
-<%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("login");
-    }
-%>
-<div class="container login-container">
+<%@include file="../accounts/check_login.jsp"%>
+<%@include file="../layout/header.jsp"%>
+<div class="container login-container mt-5">
     <div class="row">
         <div class="col-md-6 login-form-1">
             <h2>
@@ -46,7 +42,7 @@
                     </div>
                     <div class="form-group">
                         <label for="username">Username</label>
-                        <input type="text" name="username" value="${dbUser.name}" class="form-control"
+                        <input type="text" name="username"  value="${dbUser.name}" class="form-control"
                                id="username" required
                                placeholder="Username">
                     </div>
@@ -57,10 +53,6 @@
 
     </div>
 </div>
-
-
-<script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+<%@include file="../layout/js.jsp"%>
 </body>
 </html>

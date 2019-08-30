@@ -10,16 +10,12 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css" >
+    <%@include file="../layout/css.jsp"%>
 </head>
 <body>
-<%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("login");
-    }
-%>
-<div class="container login-container">
+<%@include file="../accounts/check_login.jsp"%>
+<%@include file="../layout/header.jsp"%>
+<div class="container login-container mt-5">
     <div class="row">
         <div class="col-md-6 login-form-1">
             <h2>
@@ -36,16 +32,16 @@
                 <form action="create-product" method="post"></c:if>
 
                     <c:if test="${product != null}">
-                        <input type="hidden" name="productId" value="${product.id}"/>
+                        <input type="hidden" name="productId" required value="${product.id}"/>
                     </c:if>
                     <div class="form-group">
                         <label for="productId">Product ID</label>
-                        <input type="number" class="form-control" id="productId"
+                        <input type="number" class="form-control" id="productId" required
                                name="productId" placeholder="Enter product ID" value="${product.id}" <c:if test="${product !=null}">readonly</c:if> required>
                     </div>
                     <div class="form-group">
                         <label for="productName">Product Name</label>
-                        <input type="text" name="productName" value="${product.name}" class="form-control"
+                        <input type="text" name="productName" required value="${product.name}" class="form-control"
                                id="productName" required
                                placeholder="Product Name">
                     </div>
@@ -60,9 +56,6 @@
     </div>
 </div>
 
-
-<script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+<%@include file="../layout/js.jsp"%>
 </body>
 </html>

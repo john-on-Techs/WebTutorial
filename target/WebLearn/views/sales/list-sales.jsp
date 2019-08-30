@@ -10,25 +10,17 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css">
-
+    <%@include file="../layout/css.jsp"%>
 </head>
 <body>
-<%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("login");
-    }
-%>
-
-
-
-<div class="container">
+<%@include file="../accounts/check_login.jsp"%>
+<%@include file="../layout/header.jsp"%>
+<div class="container mt-5">
 
     <c:if test="${sales!= null}">
-    <table class=" table">
+    <table class=" table table-hover table-striped">
         <caption>List of Sales</caption>
-        <thead>
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#ID</th>
             <th scope="col">Date</th>
@@ -56,9 +48,6 @@
     <a href="create-sale" class="badge badge-primary">Sale Product</a>
 
 
-
-<script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+        <%@include file="../layout/js.jsp"%>
 </body>
 </html>

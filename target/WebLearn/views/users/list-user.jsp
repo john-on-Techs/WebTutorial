@@ -13,25 +13,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css" >
+    <%@include file="../layout/css.jsp"%>
 
 </head>
 <body>
-<%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("login");
-    }
-%>
+<%@include file="../accounts/check_login.jsp"%>
+<%@include file="../layout/header.jsp"%>
 
 
-
-<div class="container">
+<div class="container mt-5">
 
     <c:if test="${users!= null}">
-    <table class=" table">
+    <table class=" table table-hover table-striped">
         <caption>List of Users</caption>
-        <thead>
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#ID</th>
             <th scope="col">Name</th>
@@ -40,7 +35,6 @@
         </tr>
         </thead>
         <tbody>
-
         <c:forEach items="${users}" var="dbUser" >
             <tr>
                 <td>${dbUser.id}</td>
@@ -54,18 +48,10 @@
 
             </tr>
         </c:forEach>
-
-
-
-
         </tbody>
     </table>
     </c:if>
     <a href="create-user" class="badge badge-primary">Add New User</a>
-
-
-    <script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-    <script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+        <%@include file="../layout/js.jsp"%>
 </body>
 </html>

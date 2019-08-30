@@ -11,43 +11,47 @@
 
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css">
+    <%@include file="/views/layout/css.jsp"%>
 </head>
-<body class="">
+<body >
 
-
-<div class="container login-container">
+<%@include file="/views/layout/header.jsp"%>
+<%
+    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
+    if(session.getAttribute("user")!=null){
+        response.sendRedirect(pageContext.toString());
+    }
+%>
+<div class="container mt-5">
     <div class="row">
-        <div class="col-md-6 login-form-1">
+        <div class="col-md-4 "></div>
+        <div class="col-md-6">
             <form action="login" method="post" class>
 
-                   <div class="form-group">
-                       <label for="user-id">User ID</label>
-                       <input type="text" class="form-control" id="user-id" name="user-id" placeholder="Enter user ID">
-                   </div>
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Enter username">
+                    <label for="user-id">User ID</label>
+                    <input type="number" required class="form-control" id="user-id" name="user-id" placeholder="Enter user ID">
                 </div>
                 <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" required class="form-control" id="username" name="username" placeholder="Enter username">
+                </div>
+               <%-- <div class="form-group">
                     <label for="user-password">Password</label>
-                    <input type="password" class="form-control" id="user-password" name="user-password" placeholder="Password">
+                    <input type="password"  class="form-control" id="user-password" name="user-password" placeholder="Password">
                 </div>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input" id="keep-me-signed" name="keep-me-signed">
                     <label class="form-check-label" for="keep-me-signed">Check me out</label>
-                </div>
+                </div>--%>
                 <button type="submit" class="btn btn-primary">Login</button>
             </form>
 
         </div>
-
     </div>
 </div>
 
 
-<script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+<%@include file="/views/layout/js.jsp"%>
 </body>
 </html>

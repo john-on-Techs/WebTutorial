@@ -1,4 +1,4 @@
-<%@ page import="java.util.ArrayList" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: oenga
   Date: 8/26/19
@@ -13,25 +13,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css" >
+    <%@include file="../layout/css.jsp"%>
 
 </head>
 <body>
-<%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("login");
-    }
-%>
-
-
-
-<div class="container">
+<%@include file="../accounts/check_login.jsp"%>
+<%@include file="../layout/header.jsp"%>
+<div class="container mt-5">
 
     <c:if test="${products!= null}">
-    <table class=" table">
+    <table class=" table table-hover table-striped">
         <caption>List of Products</caption>
-        <thead>
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#ID</th>
             <th scope="col">Name</th>
@@ -42,21 +35,21 @@
         </thead>
         <tbody>
 
-        <c:forEach items="${products}" var="product" >
+        <c:forEach items="${products}" var="product">
             <tr>
                 <td>${product.id}</td>
                 <td>${product.name}</td>
                 <td>${product.description}</td>
-                <td> <a href="update-product?productId=${product.id}" role="button" class="btn btn-primary">Edit</a></td>
-                <td><form action="delete-product" method="post">
-                    <input type="hidden" name="productId" value="${product.id}"/>
-                    <button class="btn btn-danger" type="submit">Delete</button>
-                </form></td>
+                <td><a href="update-product?productId=${product.id}" role="button" class="btn btn-primary">Edit</a></td>
+                <td>
+                    <form action="delete-product" method="post" onsubmit="">
+                        <input type="hidden" name="productId" value="${product.id}"/>
+                        <button class="btn btn-danger" type="submit">Delete</button>
+                    </form>
+                </td>
 
             </tr>
         </c:forEach>
-
-
 
 
         </tbody>
@@ -64,9 +57,7 @@
     </c:if>
     <a href="create-product" class="badge badge-primary">Add New Product</a>
 
+<%@include file="../layout/js.jsp"%>
 
-    <script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-    <script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
 </body>
 </html>

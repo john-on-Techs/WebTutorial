@@ -10,25 +10,21 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css">
+    <%@include file="../layout/css.jsp"%>
 
 </head>
 <body>
 
-<%
-    response.setHeader("Cache-Control", "no-cache,no-store,must-revalidate");
-    if (session.getAttribute("user") == null) {
-        response.sendRedirect("login");
-    }
+<%@include file="/views/layout/header.jsp"%>
+<%@include file="/views/accounts/check_login.jsp"%>
 
-%>
 
-<div class="container">
+<div class="container mt-5">
 
     <c:if test="${receivings!= null}">
-    <table class=" table">
+    <table class=" table table-hover table-striped">
         <caption>List of Receiving</caption>
-        <thead>
+        <thead class="thead-dark">
         <tr>
             <th scope="col">#ID</th>
             <th scope="col">Batch No</th>
@@ -61,8 +57,6 @@
     <a href="create-receiving" class="badge badge-primary">Receive Products</a>
 
 
-    <script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-    <script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-    <script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+        <%@include file="../layout/js.jsp"%>
 </body>
 </html>

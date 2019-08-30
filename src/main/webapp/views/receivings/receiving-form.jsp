@@ -10,56 +10,57 @@
 <html>
 <head>
     <title>Title</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/styles/css/bootstrap.min.css">
+    <%@include file="../layout/css.jsp"%>
 
 </head>
 
 <body>
-<%
-    response.setHeader("Cache-Control","no-cache,no-store,must-revalidate");
-    if(session.getAttribute("user")==null){
-        response.sendRedirect("login");
-    }
-%>
-<form action="create-receiving" method="post">
-    <div class="form-group">
-        <label for="batchNo">Batch No:</label>
-        <input type="number" name="batchNo" class="form-control"
-               id="batchNo" required
-               placeholder="Batch No">
-    </div>
-    <div class="form-group">
-        <label for="productId">Product</label>
-        <select class="form-control" id="productId" name="productId">
-            <c:forEach items="${products}" var="product">
-                <option value="${product.id}">${product.name}</option>
-            </c:forEach>
+<%@include file="/views/layout/header.jsp"%>
+<%@include file="/views/accounts/check_login.jsp"%>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4 col-sm-6">
 
-        </select>
-    </div>
-    <div class="form-group">
-        <label for="quantity">Quantity:</label>
-        <input type="number" name="quantity" class="form-control"
-               id="quantity" required
-               placeholder="Quantity">
-    </div>
-    <div class="form-group">
-        <label for="sellingPrice">Selling Price:</label>
-        <input type="number" name="sellingPrice" class="form-control"
-               id="sellingPrice" required
-               placeholder="Selling Price">
-    </div>
-    <div class="form-group">
-        <label for="buyingPrice">Buying Price:</label>
-        <input type="number" name="buyingPrice" class="form-control"
-               id="buyingPrice" required
-               placeholder="Selling Price">
-    </div>
-    <button type="submit">Save</button>
-</form>
+            <form action="create-receiving" method="post">
+                <div class="form-group">
+                    <label for="batchNo">Batch No:</label>
+                    <input type="number" name="batchNo" class="form-control"
+                           id="batchNo" required
+                           placeholder="Batch No">
+                </div>
+                <div class="form-group">
+                    <label for="productId">Product</label>
+                    <select class="form-control" id="productId" name="productId" required>
+                        <c:forEach items="${products}" var="product">
+                            <option value="${product.id}">${product.name}</option>
+                        </c:forEach>
 
-<script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>
-<script src="${pageContext.request.contextPath}/styles/js/bootstrap.min.js"></script>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Quantity:</label>
+                    <input type="number" name="quantity" class="form-control"
+                           id="quantity" required
+                           placeholder="Quantity">
+                </div>
+                <div class="form-group">
+                    <label for="sellingPrice">Selling Price:</label>
+                    <input type="number" name="sellingPrice" class="form-control"
+                           id="sellingPrice" required
+                           placeholder="Selling Price">
+                </div>
+                <div class="form-group">
+                    <label for="buyingPrice">Buying Price:</label>
+                    <input type="number" name="buyingPrice" class="form-control"
+                           id="buyingPrice" required
+                           placeholder="Buying Price">
+                </div>
+                <button type="submit">Save</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%@include file="../layout/js.jsp"%>
 </body>
 </html>
