@@ -34,9 +34,8 @@
                 Welcome,${user.name}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="">Posts</a>
-                <a class="dropdown-item" href="">Categories</a>
-                <a class="dropdown-item" href="">Tags</a>
+                <a class="dropdown-item" href="">###</a>
+
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="logout" onclick="event.preventDefault();
                 document.getElementById('frm-logout').submit();">Logout</a>

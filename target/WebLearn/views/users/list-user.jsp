@@ -24,7 +24,7 @@
 <div class="container mt-5">
 
     <c:if test="${users!= null}">
-    <table class=" table table-hover table-striped">
+    <table class=" table table-hover table-striped table-sm table-responsive">
         <caption>List of Users</caption>
         <thead class="thead-dark">
         <tr>

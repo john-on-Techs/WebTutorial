@@ -42,9 +42,9 @@
                 <td>${product.description}</td>
                 <td><a href="update-product?productId=${product.id}" role="button" class="btn btn-primary">Edit</a></td>
                 <td>
-                    <form action="delete-product" method="post" onsubmit="">
+                    <form action="delete-product" method="post" >
                         <input type="hidden" name="productId" value="${product.id}"/>
-                        <button class="btn btn-danger" type="submit">Delete</button>
+                        <button class="btn btn-danger" type="submit" id="delete">Delete</button>
                     </form>
                 </td>
 
@@ -58,6 +58,38 @@
     <a href="create-product" class="badge badge-primary">Add New Product</a>
 
 <%@include file="../layout/js.jsp"%>
+    <script>
+        $(document).ready(function () {
+
+        });
+        $("#delete").click(function (e) {
+            e.preventDefault();
+            var form =$(this).parents('form');
+            swal({
+                title:'Are you sure?',
+                text:'You will not be able to recover this operation!',
+                type:'warning',
+                showCancelButton:true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel please!',
+                closeOnConfirm: false,
+
+            },function (isConfirm) {
+                if(isConfirm){
+                    form.submit();
+                }else{
+                    swal(
+                        'Cancelled',
+                        'Your  product is safe :)',
+                        'error'
+                    );
+                }
+
+            });
+        });
+    </script>
 
 </body>
 </html>
