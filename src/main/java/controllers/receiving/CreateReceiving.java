@@ -6,11 +6,13 @@ import model.User;
 import services.ProductService;
 import services.ReceivingService;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.jsp.PageContext;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -37,6 +39,9 @@ public class CreateReceiving extends HttpServlet {
             User user = (User) request.getSession().getAttribute("user");
             Receiving receiving = new Receiving(batchNo, productId, quantity, buyingPrice, sellingPrice, user.getId());
             if (receivingService.create(receiving)) {
+
+                request.getServletContext().setAttribute("type","success");
+                request.getServletContext().setAttribute("message","Product received Successfully");
                 response.sendRedirect("list-receivings");
 
             }

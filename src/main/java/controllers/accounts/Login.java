@@ -38,26 +38,23 @@ public class Login extends HttpServlet {
             String username = req.getParameter("username");
             User user;
             user = userService.read(id);
-            if(user != null){
-                if(user.getName().equals(username)){
+            if(user != null && user.getName().equals(username)){
+
                     HttpSession session = req.getSession();
                     session.setAttribute("user",user);
-
-
-
                     RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
                     rd.include(req, resp);
 
-                }else{
+            }else{
+                RequestDispatcher requestDispatcher = req.getRequestDispatcher("/views/accounts/login.jsp");
 
-
-                    RequestDispatcher rd = req.getRequestDispatcher("login");
-                    rd.include(req, resp);
-                }
+                req.setAttribute("type","error");
+                req.setAttribute("message","User with the supplied ID does not exist");
+                requestDispatcher.forward(req, resp);
             }
         } catch (SQLException | NumberFormatException e) {
             throw new ServletException("Some error occurred",e);
         }
-        resp.sendRedirect("index.jsp");
+
     }
 }

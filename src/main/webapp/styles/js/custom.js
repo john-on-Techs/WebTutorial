@@ -1,4 +1,4 @@
-import Swal from 'sweetalert2';
+import Swal from  './sweetalert2.all.min'
 window.swal = Swal;
 
 const Toast = Swal.mixin({

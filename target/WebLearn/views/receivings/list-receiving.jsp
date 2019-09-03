@@ -10,13 +10,13 @@
 <html>
 <head>
     <title>Title</title>
-    <%@include file="../layout/css.jsp"%>
+    <%@include file="../layout/css.jsp" %>
 
 </head>
 <body>
 
-<%@include file="/views/layout/header.jsp"%>
-<%@include file="/views/accounts/check_login.jsp"%>
+<%@include file="/views/layout/header.jsp" %>
+<%@include file="/views/accounts/check_login.jsp" %>
 
 
 <div class="container mt-5">
@@ -57,6 +57,22 @@
     <a href="create-receiving" class="badge badge-primary">Receive Products</a>
 
 
-        <%@include file="../layout/js.jsp"%>
+    <%@include file="../layout/js.jsp" %>
+
+        <c:if test="${message!=null}">
+        <c:if test="${type!=null}">
+        <script>
+            $(document).ready(function () {
+                swal.fire({
+                    position: 'top-end',
+                    type: '${type}',
+                    title: '${message}',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+            });
+        </script>
+        </c:if>
+        </c:if>
 </body>
 </html>

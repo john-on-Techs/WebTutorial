@@ -17,7 +17,9 @@
 <body>
 <%@include file="/views/layout/header.jsp"%>
 <%@include file="/views/accounts/check_login.jsp"%>
+
 <div class="container mt-5">
+
     <div class="row">
         <div class="col-md-4 col-sm-6">
 
@@ -62,5 +64,18 @@
 </div>
 
 <%@include file="../layout/js.jsp"%>
+<c:if test="${message!=null}">
+    <c:if test="${type!=null}">
+        <script>
+            $(document).ready(function () {
+                swal.fire(
+                    'Message',
+                    '${message}',
+                    '${type}'
+                );
+            });
+        </script>
+    </c:if>
+</c:if>
 </body>
 </html>
