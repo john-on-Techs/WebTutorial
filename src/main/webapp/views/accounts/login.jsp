@@ -26,7 +26,7 @@
     <div class="row">
         <div class="col-md-4 "></div>
         <div class="col-md-6">
-            <form action="login" method="post" class>
+            <form action="login" method="post" >
 
                 <div class="form-group">
                     <label for="user-id">User ID</label>
@@ -44,7 +44,7 @@
                     <input type="checkbox" class="form-check-input" id="keep-me-signed" name="keep-me-signed">
                     <label class="form-check-label" for="keep-me-signed">Check me out</label>
                 </div>--%>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn btn-primary" id="sub" >Login</button>
             </form>
 
         </div>
@@ -53,5 +53,6 @@
 
 
 <%@include file="/views/layout/js.jsp"%>
+
 </body>
 </html>
