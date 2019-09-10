@@ -32,29 +32,3 @@ public class ListProducts extends HttpServlet {
         }
     }
 }
-
-
-
-
-
-
-    /*
-
-            String name="user";
-        String value="john";
-        Cookie myCookie =  new Cookie(name, value);
-
-
-
-
-    Cookie[] ck = request.getCookies();
-    boolean hasCokie =false;
-        for(Cookie cookie:ck){
-                if(myCookie.getName().equals(cookie.getName()) && myCookie.getValue().equals(cookie.getValue())){
-                hasCokie = true;
-                }
-                }
-                if(!hasCokie){
-                response.addCookie(myCookie);
-                }
-*/

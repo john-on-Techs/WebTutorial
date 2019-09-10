@@ -1,7 +1,7 @@
 package controllers.product;
 
-import services.ProductService;
 import model.Product;
+import services.ProductService;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,9 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet(name = "delete-product",urlPatterns = "/delete-product")
+@WebServlet(name = "delete-product", urlPatterns = "/delete-product")
 public class DeleteProduct extends HttpServlet {
-    ProductService productService =null;
+    ProductService productService = null;
 
     @Override
     public void init() throws ServletException {
@@ -22,22 +22,24 @@ public class DeleteProduct extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Product product =null;
+        Product product = null;
         try {
             int productId = Integer.parseInt(req.getParameter("productId"));
             //System.out.println(productId);
-             product = productService.read(productId);
+            product = productService.read(productId);
+            if (product != null) {
+                if (productService.delete(product)) {
+                    req.getServletContext().setAttribute("type", "success");
+                    req.getServletContext().setAttribute("message", "Product deleted Successfully");
+                    resp.sendRedirect("list-product");
+                }
+            }
 
 
         } catch (SQLException e) {
-           throw  new ServletException("Error retrieving product",e);
+            throw new ServletException("Error performing this operation", e);
         }
-        try {
-            productService.delete(product);
-            resp.sendRedirect("list-product");
-        } catch (SQLException e) {
-            throw  new ServletException("Error deleting product",e);
-        }
+
 
     }
 }

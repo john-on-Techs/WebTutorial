@@ -28,6 +28,8 @@ public class DeleteUser extends HttpServlet {
             user = userService.read(userId);
 
             if (userService.delete(user)) {
+                request.getServletContext().setAttribute("type","success");
+                request.getServletContext().setAttribute("message","User deleted Successfully");
                 response.sendRedirect("list-user");
             }
         } catch (SQLException e) {

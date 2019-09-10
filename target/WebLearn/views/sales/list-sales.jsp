@@ -49,5 +49,25 @@
 
 
         <%@include file="../layout/js.jsp"%>
+        <c:if test="${message!=null}">
+        <c:if test="${type!=null}">
+        <script>
+            $(document).ready(function () {
+                swal.fire({
+                    position: 'top-end',
+                    type: '${type}',
+                    title: '${message}',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                <%
+                request.getServletContext().removeAttribute("type");
+                request.getServletContext().removeAttribute("message");
+
+                %>
+            });
+        </script>
+        </c:if>
+        </c:if>
 </body>
 </html>

@@ -31,6 +31,8 @@ public class UpdateUser extends HttpServlet {
             if (user != null) {
                 user.setName(username);
                 if (userService.update(user)) {
+                    request.getServletContext().setAttribute("type","success");
+                    request.getServletContext().setAttribute("message","User Updated Successfully");
                     response.sendRedirect("list-user");
                 }
             }

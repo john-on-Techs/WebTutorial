@@ -29,21 +29,20 @@ public class UpdateProduct extends HttpServlet {
 
         try {
             product = productService.read(productId);
-        } catch (SQLException e) {
-            throw new ServletException("Retrieving product failed!", e);
-        }
+            if (product != null) {
+                product.setName(productName);
+                product.setDescription(productDecription);
+                if (productService.update(product)) {
+                    request.getServletContext().setAttribute("type", "success");
+                    request.getServletContext().setAttribute("message", "Product updated Successfully");
+                    response.sendRedirect("list-product");
+                }
 
-        if (product != null) {
-            product.setName(productName);
-            product.setDescription(productDecription);
-
-            try {
-                productService.update(product);
-                response.sendRedirect("list-product");
-            } catch (SQLException e) {
-                throw new ServletException("Updating product failed!", e);
             }
+        } catch (SQLException e) {
+            throw new ServletException("Error preforming this operation", e);
         }
+
 
     }
 

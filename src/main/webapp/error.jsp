@@ -13,7 +13,7 @@
 </head>
 <body>
 Some error occurred: <br>
-<%= exception%>
+<%= exception.getMessage()%>
 
 <script src="${pageContext.request.contextPath}/styles/js/jquery-3.2.1.slim.min.js"></script>
 <script src="${pageContext.request.contextPath}/styles/js/popper.min.js"></script>

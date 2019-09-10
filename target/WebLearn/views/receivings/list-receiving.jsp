@@ -70,6 +70,11 @@
                     showConfirmButton: false,
                     timer: 1500
                 });
+                <%
+                request.getServletContext().removeAttribute("type");
+                request.getServletContext().removeAttribute("message");
+
+                %>
             });
         </script>
         </c:if>

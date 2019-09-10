@@ -25,6 +25,8 @@ public class CreateUser extends HttpServlet {
             String name = request.getParameter("username");
             User user =  new User(userId,name);
             if (userService.create(user)) {
+                request.getServletContext().setAttribute("type","success");
+                request.getServletContext().setAttribute("message","User created Successfully");
                 response.sendRedirect("list-user");
             }
         } catch (SQLException e) {

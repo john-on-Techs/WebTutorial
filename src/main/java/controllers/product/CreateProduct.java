@@ -35,6 +35,8 @@ public class CreateProduct extends HttpServlet {
             String productDecription = req.getParameter("productDescription");
             Product product = new Product(productId, productName, productDecription);
             if( productService.create(product)){
+                req.getServletContext().setAttribute("type","success");
+                req.getServletContext().setAttribute("message","Product created Successfully");
                 resp.sendRedirect("list-product");
             }
         } catch (SQLException |NumberFormatException e) {

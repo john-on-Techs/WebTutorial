@@ -41,7 +41,7 @@
                 <td>${dbUser.name}</td>
 
                 <td> <a href="update-user?userId=${dbUser.id}" role="button" class="btn btn-primary">Edit</a></td>
-                <td><form action="delete-user" method="post">
+                <td><form action="delete-user" method="post" id="delete-form">
                     <input type="hidden" name="userId" value="${dbUser.id}"/>
                     <button class="btn btn-danger" type="submit">Delete</button>
                 </form></td>
@@ -53,5 +53,50 @@
     </c:if>
     <a href="create-user" class="badge badge-primary">Add New User</a>
         <%@include file="../layout/js.jsp"%>
+        <c:if test="${message!=null}">
+        <c:if test="${type!=null}">
+        <script>
+            $(document).ready(function () {
+                swal.fire({
+                    position: 'top-end',
+                    type: '${type}',
+                    title: '${message}',
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                <%
+                request.getServletContext().removeAttribute("type");
+                request.getServletContext().removeAttribute("message");
+
+                %>
+            });
+        </script>
+        </c:if>
+        </c:if>
+        <script>
+            $(document).ready(function (e) {
+                $("#delete-form").submit(function (event) {
+                    event.preventDefault();
+                    var form =this;
+
+                    swal.fire({
+                        title:'Are you sure?',
+                        text:'You will not be able to recover this operation!',
+                        type:'warning',
+                        showCancelButton:true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel please!',
+                        closeOnConfirm: false,
+                    }).then((result) => {
+                        if (result.value) {
+                            form.submit();
+
+                        }
+                    });
+                });
+            });
+        </script>
 </body>
 </html>

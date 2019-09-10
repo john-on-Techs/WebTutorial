@@ -33,6 +33,8 @@ public class CreateSale extends HttpServlet {
             User user =(User) request.getSession().getAttribute("user");
             Sale sale = new Sale(productId,0.0,quantity,user.getId());
             if(saleService.create(sale)){
+                request.getServletContext().setAttribute("type","success");
+                request.getServletContext().setAttribute("message","Sale created Successfully");
                 response.sendRedirect("list-sale");
             }
         } catch (SQLException | NumberFormatException e) {

@@ -45,5 +45,18 @@
 </div>
 
 <%@include file="../layout/js.jsp"%>
+<c:if test="${message!=null}">
+    <c:if test="${type!=null}">
+        <script>
+            $(document).ready(function () {
+                swal.fire(
+                    'Message',
+                    '${message}',
+                    '${type}'
+                );
+            });
+        </script>
+    </c:if>
+</c:if>
 </body>
 </html>
