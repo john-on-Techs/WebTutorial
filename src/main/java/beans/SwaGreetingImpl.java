@@ -1,8 +1,11 @@
 package beans;
 
+import qualifiers.EngSwa;
+import qualifiers.SWA;
+
 import javax.inject.Named;
 
-@Named("swa")
+@EngSwa(EngSwa.Lang.SWA)
 public class SwaGreetingImpl  implements GreetinI{
     @Override
     public void sayHi() {

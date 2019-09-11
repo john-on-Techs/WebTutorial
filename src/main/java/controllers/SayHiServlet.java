@@ -1,6 +1,10 @@
 package controllers;
 
 import beans.GreetinI;
+import events.Server1;
+import qualifiers.ENG;
+import qualifiers.EngSwa;
+import qualifiers.SWA;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -14,11 +18,13 @@ import java.io.IOException;
 @WebServlet(name = "SayHiServlet",urlPatterns = "/sayhi")
 public class SayHiServlet extends HttpServlet {
     @Inject
-    @Named("swa")
+    Server1 server1;
+    @Inject
+    @EngSwa(EngSwa.Lang.SWA)
     private GreetinI swa;
 
     @Inject
-    @Named("eng")
+    @EngSwa(EngSwa.Lang.ENG)
     private GreetinI eng;
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -28,5 +34,7 @@ public class SayHiServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
             swa.sayHi();
             eng.sayHi();
+            server1.cashwithdrawn();
+
     }
 }

@@ -1,8 +1,15 @@
 package beans;
 
-import javax.inject.Named;
+import qualifiers.ENG;
+import qualifiers.EngSwa;
 
-@Named("eng")
+import javax.enterprise.inject.Any;
+import javax.enterprise.inject.Default;
+
+
+//@ENG
+@EngSwa(EngSwa.Lang.ENG)
+
 public class EngGreetingImp  implements GreetinI{
     @Override
     public void sayHi() {
